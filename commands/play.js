@@ -1,6 +1,6 @@
 const { SlashCommandBuilder } = require('discord.js');
 const { joinVoiceChannel, createAudioResource, createAudioPlayer, NoSubscriberBehavior  } = require('@discordjs/voice');
-const ytdl = require('ytdl-core');
+const playdl = require('play-dl');
 
 const messages = require('./../language/messages.js');
 const getURL = require('../music/getURL.js');
@@ -24,9 +24,10 @@ module.exports =
         const query = interaction.options.getString('query');
         const { videoURL, videoTitle } = await getURL(query);
 
-        const audio = ytdl(videoURL, { filter: 'audioonly' });
+        // I get audio of content
+        const audio = await playdl.stream(videoURL);
 
-        const resource = createAudioResource(audio, { inlineVolume: true });
+        const resource = createAudioResource(audio.stream, { inputType: audio.type, inlineVolume: true });
         resource.volume.setVolume(0.5);
 
         const player = createAudioPlayer({
