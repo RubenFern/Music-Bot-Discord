@@ -1,6 +1,6 @@
 const fs = require('node:fs');
 const path = require('node:path');
-const { Client, GatewayIntentBits  } = require('discord.js');
+const { Client, GatewayIntentBits } = require('discord.js');
 
 const { token } = require('./config.json');
 const loadEvents = require('./server/loadEvents.js');
@@ -8,7 +8,13 @@ const deployCommands = require('./server/deployCommands.js');
 const loadCommands = require('./server/loadCommands.js');
 
 // Create a new client instance
-const client = new Client({ intents: [GatewayIntentBits.Guilds] });
+const client = new Client(
+{ 
+    intents: [
+        GatewayIntentBits.Guilds, 
+        GatewayIntentBits.GuildVoiceStates
+    ] 
+});
 
 // Deploy commands
 deployCommands(fs, path);
