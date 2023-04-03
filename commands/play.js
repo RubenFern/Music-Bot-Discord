@@ -25,8 +25,8 @@ module.exports =
             adapterCreator: voiceChannel.guild.voiceAdapterCreator,
         });
 
-        const link = interaction.options.getString('link');
+        const query = interaction.options.getString('query');
 
-		await interaction.reply(`Se va a reproducir: ${link}. Canal: ${voiceChannel}`);
+		await interaction.reply(`Se va a reproducir: ${query}...`);
 	},
 };
