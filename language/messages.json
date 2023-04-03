@@ -1,0 +1,30 @@
+{
+    "en":
+    {
+        "userCommandInfo": "Provides information about the user.",
+        "userCommand1": "This command was run by",
+        "userCommand2": "who joined on",
+
+        "serverCommandInfo": "Provides information about the server.",
+        "serverCommand1": "This server is",
+        "serverCommand2": "and has",
+        "serverCommand3": "members",
+
+        "playCommandInfo": "Indicate the content you want to play.",
+        "playCommandLinkInfo": "Indicate the link to the content you want to see."
+    },
+    "es":
+    {
+        "userCommandInfo": "Proporciona información del usuario",
+        "userCommand1": "Este comando fue ejecutado por",
+        "userCommand2": "quién entró el",
+
+        "serverCommandInfo": "Proporciona información del servidor.",
+        "serverCommand1": "Este servidor es",
+        "serverCommand2": "y tiene",
+        "serverCommand3": "miembros",
+
+        "playCommandInfo": "Indica el contenido que quieres reproducir.",
+        "playCommandLinkInfo": "Indica el enlace al contenido que quieres ver."
+    }
+}
