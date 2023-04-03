@@ -1,4 +1,4 @@
-const config = require('./../language/config.json');
+const config = require('./../language/language.json');
 const messagesFile = require('./../language/messages.json');
 
 // I get the language of the user
