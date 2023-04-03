@@ -1,6 +1,8 @@
 {
     "en":
     {
+        "errorPlayCommands": "Not on a voice channel.",
+
         "userCommandInfo": "Provides information about the user.",
         "userCommand1": "This command was run by",
         "userCommand2": "who joined on",
@@ -11,10 +13,12 @@
         "serverCommand3": "members",
 
         "playCommandInfo": "Indicate the content you want to play.",
-        "playCommandLinkInfo": "Indicate the link to the content you want to see."
+        "playCommandQueryInfo": "Indicate the link or name to the content you want to see."
     },
     "es":
     {
+        "errorPlayCommands": "No está en un canal de voz.",
+
         "userCommandInfo": "Proporciona información del usuario",
         "userCommand1": "Este comando fue ejecutado por",
         "userCommand2": "quién entró el",
@@ -25,6 +29,6 @@
         "serverCommand3": "miembros",
 
         "playCommandInfo": "Indica el contenido que quieres reproducir.",
-        "playCommandLinkInfo": "Indica el enlace al contenido que quieres ver."
+        "playCommandQueryInfo": "Indica el enlace o nombre al contenido que quieres ver."
     }
 }

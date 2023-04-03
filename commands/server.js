@@ -1,7 +1,8 @@
 const { SlashCommandBuilder } = require('discord.js');
 const messages = require('./../language/messages.js');
 
-module.exports = {
+module.exports = 
+{
 	data: new SlashCommandBuilder()
 		.setName('server')
 		.setDescription(messages.serverCommandInfo),

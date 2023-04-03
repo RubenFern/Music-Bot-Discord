@@ -1,39 +1,23 @@
-const { Events } = require('discord.js');
+const fs = require('node:fs');
+const path = require('node:path');
+const { Client, GatewayIntentBits  } = require('discord.js');
+
 const { token } = require('./config.json');
-require('./server/deployCommands.js');
+const loadEvents = require('./server/loadEvents.js');
+const deployCommands = require('./server/deployCommands.js');
+const loadCommands = require('./server/loadCommands.js');
 
 // Create a new client instance
-const { client } = require('./server/loadCommands.js');
+const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 
-client.on(Events.InteractionCreate, async interaction => 
-{
-	if (!interaction.isChatInputCommand()) return;
+// Deploy commands
+deployCommands(fs, path);
 
-	const command = interaction.client.commands.get(interaction.commandName);
+// Load commands
+loadCommands(client, fs, path);
 
-	if (!command) {
-		console.error(`No command matching ${interaction.commandName} was found.`);
-		return;
-	}
-
-	try {
-		await command.execute(interaction);
-	} catch (error) {
-		console.error(error);
-		if (interaction.replied || interaction.deferred) {
-			await interaction.followUp({ content: 'There was an error while executing this command!', ephemeral: true });
-		} else {
-			await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
-		}
-	}
-});
-
-// When the client is ready, run this code (only once)
-// We use 'c' for the event parameter to keep it separate from the already defined 'client'
-client.once(Events.ClientReady, c => 
-{
-	console.log(`Ready! Logged in as ${c.user.tag}`);
-});
+// Load events
+loadEvents(client, fs, path);
 
 // Log in to Discord with your client's token
 client.login(token);
