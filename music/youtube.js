@@ -11,15 +11,17 @@ const youtube = async (query) =>
     {
         const videoId = query.split("=")[1];
 
-        const api_call = `https://www.googleapis.com/youtube/v3/videos?part=snippet&id=${videoId}&key=${API_KEY}`;
+        const api_call = `https://www.googleapis.com/youtube/v3/videos?part=snippet,status&id=${videoId}&key=${API_KEY}`;
 
         await fetch(api_call)
             .then(res => res.json())
             .then(data => 
             {
                 const videoTitle = data.items[0].snippet.title;
+                const privacy = data.items[0].status.privacyStatus;
 
-                videos.push({ URL: query, Title: videoTitle });
+                if ( privacy == 'public' )
+                    videos.push({ URL: query, Title: videoTitle });
             })
             .catch(err => console.error(err));
     }
@@ -28,7 +30,7 @@ const youtube = async (query) =>
     {
         const playListId = query.split("=")[1];
 
-        const api_call = `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&playlistId=${playListId}&key=${API_KEY}`;
+        const api_call = `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet,status&maxResults=50&playlistId=${playListId}&key=${API_KEY}`;
 
         await fetch(api_call)
             .then(res => res.json())
@@ -39,8 +41,10 @@ const youtube = async (query) =>
                 listaVideos.forEach(video =>
                 {
                     const url = `https://www.youtube.com/watch?v=${video.snippet.resourceId.videoId}`;
+                    const privacy = video.status.privacyStatus;
 
-                    videos.push({ URL: url, Title: video.snippet.title });
+                    if ( privacy == 'public' )
+                        videos.push({ URL: url, Title: video.snippet.title });
                 });
             })
             .catch(err => console.error(err));
@@ -48,7 +52,7 @@ const youtube = async (query) =>
 
     if ( type == 'search' )
     {
-        const api_call = `https://www.googleapis.com/youtube/v3/search?part=id%2Csnippet&q=${encodeURIComponent(query)}&type=video&key=${API_KEY}`;
+        const api_call = `https://www.googleapis.com/youtube/v3/search?part=id%2Csnippet,status&q=${encodeURIComponent(query)}&type=video&key=${API_KEY}`;
 
         await fetch(api_call)
             .then(res => res.json())
@@ -57,8 +61,10 @@ const youtube = async (query) =>
                 const videoId = data.items[0].id.videoId;
                 const videoURL = `https://www.youtube.com/watch?v=${videoId}`;
                 const videoTitle = data.items[0].snippet.title;
+                const privacy = data.items[0].status.privacyStatus;
 
-                videos.push({ URL: videoURL, Title: videoTitle });
+                if ( privacy == 'public' )
+                    videos.push({ URL: videoURL, Title: videoTitle });
             })
             .catch(err => console.error(err));
     }
