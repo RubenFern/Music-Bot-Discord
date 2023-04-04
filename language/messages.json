@@ -47,8 +47,8 @@
         "continueCommandInfo": "Continua lo que se está reproduciendo.",
         "continueCommand": "Se vuelve a reproducir.",
 
-        "nextCommandInfo": "Continua lo que se está reproduciendo.",
-        "nextCommand": "Se vuelve a reproducir.",
+        "nextCommandInfo": "Reproduce la siguiente canción de la cola.",
+        "nextCommand": "Siguiente canción.",
          
         "stopCommandInfo": "Finaliza la reproducción actual.",
         "stopCommand": "La reproducción ha finalizado."

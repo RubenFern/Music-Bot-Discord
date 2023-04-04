@@ -10,8 +10,10 @@ module.exports =
 		.setDescription(messages.stopCommandInfo),
 	async execute(interaction) 
     {
-        player.stop();
+		player.stop();
 
+		player.removeAllListeners();
+		
         await interaction.reply(`${messages.stopCommand}`);
 	},
 };
