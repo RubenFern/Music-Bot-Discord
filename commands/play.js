@@ -1,9 +1,9 @@
 const { SlashCommandBuilder } = require('discord.js');
-const { joinVoiceChannel, createAudioResource, createAudioPlayer, NoSubscriberBehavior  } = require('@discordjs/voice');
-const playdl = require('play-dl');
+const { AudioPlayerStatus } = require('@discordjs/voice');
 
 const messages = require('./../language/messages.js');
 const getURL = require('../music/getURL.js');
+const playerBot = require('../music/player.js');
 
 module.exports = 
 {
@@ -22,33 +22,16 @@ module.exports =
             await interaction.reply(messages.errorPlayCommands);
 
         const query = interaction.options.getString('query');
-        const { videoURL, videoTitle } = await getURL(query);
 
-        // I get audio of content
-        const audio = await playdl.stream(videoURL);
+        const videos = await getURL(query);
 
-        const resource = createAudioResource(audio.stream, { inputType: audio.type, inlineVolume: true });
-        resource.volume.setVolume(0.5);
+        const { player, title } = await playerBot(interaction, voiceChannel, videos);
 
-        const player = createAudioPlayer({
-            behaviors: {
-            noSubscriber: NoSubscriberBehavior.Play,
-            },
+        player.on(AudioPlayerStatus.Idle, async () =>
+        {
+            await playerBot(interaction, voiceChannel, videos);
         });
 
-        player.on('error', error => {
-            console.error(error);
-        });
-
-        player.play(resource);
-
-        // Join in the voice channel
-        joinVoiceChannel({
-            channelId: voiceChannel.id,
-            guildId: voiceChannel.guild.id,
-            adapterCreator: voiceChannel.guild.voiceAdapterCreator,
-        }).subscribe(player);
-
-		await interaction.reply(`Se va a reproducir: ${videoTitle}...`);
+        await interaction.reply(`Se va a reproducir: ${title}`);
 	},
 };

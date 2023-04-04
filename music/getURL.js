@@ -1,22 +1,19 @@
-const { API_KEY } = require('../config.json');
+const isSpotifyURL = require('../helpers/isSpotifyURL.js');
+const isYoutubeURL = require('./../helpers/isYoutubeURL.js');
+const spotify = require('./../music/spotify.js');
+const youtube = require('./../music/youtube.js');
 
 const getVideo = async (query) =>
 {
-    const url = `https://www.googleapis.com/youtube/v3/search?part=id%2Csnippet&q=${encodeURIComponent(query)}&type=video&key=${API_KEY}`;
-    let videoURL = null;
-    let videoTitle = null;
+    let videos = [];
 
-    await fetch(url)
-        .then(res => res.json())
-        .then(data => 
-        {
-            const videoId = data.items[0].id.videoId;
-            videoURL = `https://www.youtube.com/watch?v=${videoId}`;
-            videoTitle = data.items[0].snippet.title;
-        })
-        .catch(err => console.error(err));
+    if ( isYoutubeURL(query) )
+        videos = await youtube(query);
 
-    return { videoURL, videoTitle };
+    /*else if ( isSpotifyURL(query) )
+        videos = await spotify( isSpotifyURL(query) );*/
+
+    return videos;
 }
 
 module.exports = getVideo;
