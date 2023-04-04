@@ -29,7 +29,7 @@ const playSong = async (i, voiceChannel, videos) =>
     const audio = await playdl.stream(video.URL);
 
     const resource = createAudioResource(audio.stream, { inputType: audio.type, inlineVolume: true });
-    resource.volume.setVolume(0.5);
+    resource.volume.setVolume(0.8);
 
     player.on('error', error => {
         console.error(error);

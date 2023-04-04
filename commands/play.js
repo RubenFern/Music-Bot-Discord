@@ -4,6 +4,7 @@ const messages = require('./../language/messages.js');
 const getURL = require('../music/getURL.js');
 const { play } = require('../music/play.js');
 const getTitle = require('../music/getTitle.js');
+const client = require('../server/client.js');
 
 module.exports = 
 {
@@ -31,6 +32,18 @@ module.exports =
         // Ejecuto el player para que reproduzca todas las canciones que hayan buscado
         await play(voiceChannel, videos);
 
-        await interaction.reply(`Se va a reproducir: ${title}`);
+        const mesg = 
+        {
+            color: parseInt('#0099ff', 16),
+            title: `Se va a reproducir: \n\n**${title}**`,
+            thumbnail: 
+            { 
+                url: client.user.displayAvatarURL(),
+                height: 30, 
+                width: 30 
+            }
+        };
+            
+        await interaction.reply({ embeds: [mesg] });
 	},
 };

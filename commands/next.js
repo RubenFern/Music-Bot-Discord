@@ -2,6 +2,7 @@ const { SlashCommandBuilder } = require('discord.js');
 
 const messages = require('./../language/messages.js');
 const { playSong, getInfo } = require('../music/play.js');
+const client = require('../server/client.js');
 
 module.exports = 
 {
@@ -14,6 +15,18 @@ module.exports =
 
         await playSong(iG, voiceChannelG, videosG);   
 
-        await interaction.reply(`${messages.nextCommand}`);
+        const mesg = 
+        {
+            color: parseInt('#0099ff', 16),
+            title: `**${messages.nextCommand}**`,
+            thumbnail: 
+            { 
+                url: client.user.displayAvatarURL(),
+                height: 30, 
+                width: 30 
+            }
+        };
+            
+        await interaction.reply({ embeds: [mesg] });
 	},
 };

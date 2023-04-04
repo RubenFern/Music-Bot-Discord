@@ -15,15 +15,24 @@
         "playCommandInfo": "Indicate the content you want to play.",
         "playCommandQueryInfo": "Indicate the link or name to the content you want to see.",
 
-        "pauseCommandInfo": "",
+        "pauseCommandInfo": "Pauses what is currently playing.",
+        "pauseCommand": "Playback has been paused.",
 
-        "continueCommandInfo": "",
+        "continueCommandInfo": "Resumes what is currently playing.",
+        "continueCommand": "Playback has been resumed.",
 
-        "nextCommandInfo": "",
-        "nextCommand": "",
+        "nextCommandInfo": "Plays the next song in the queue.",
+        "nextCommand": "Playing next song.",
+        
+        "stopCommandInfo": "Ends the current playback.",
+        "stopCommand": "Playback has ended.",
 
-        "stopCommandInfo": "",
-        "stopCommand": ""
+        "helpCommandInfo": "Displays bot help.",
+        "helpPlay": "You can play songs or (audio-only) videos from YouTube. To do this, you must run '/play [video_link]/[playlist_link]/[search_text]'",
+        "helpStop": "You can stop the entire playback of what you are listening to.",
+        "helpNext": "You can skip to the next song (if it exists).",
+        "helpPause": "You can pause the song you are listening to.",
+        "helpContinue": "You can resume playing what you were listening to."
     },
     "es":
     {
@@ -45,12 +54,19 @@
         "pauseCommand": "Se ha pausado la reproducción.",
 
         "continueCommandInfo": "Continua lo que se está reproduciendo.",
-        "continueCommand": "Se vuelve a reproducir.",
+        "continueCommand": "Se reaunuda la reproducción.",
 
         "nextCommandInfo": "Reproduce la siguiente canción de la cola.",
         "nextCommand": "Siguiente canción.",
          
         "stopCommandInfo": "Finaliza la reproducción actual.",
-        "stopCommand": "La reproducción ha finalizado."
+        "stopCommand": "La reproducción ha finalizado.",
+
+        "helpCommandInfo": "Muestra la ayuda del bot",
+        "helpPlay": "Puedes reproducir canciones o vídeos (solo audio) desde Youtube. Para hacerlo debes ejecutar '/play [link_video]/[link_playlist]/[búsqueda_por_texto]'",
+        "helpStop": "Puedes parar la reproducción total de los que estés escuchando.",
+        "helpNext": "Puedes saltar a la próxima canción (si existe).",
+        "helpPause": "Puedes pausar la canción que estés escuchando.",
+        "helpContinue": "Puedes continuar con la reproducción de lo que estabas escuchando."
     }
 }
