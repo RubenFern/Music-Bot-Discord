@@ -13,7 +13,17 @@
         "serverCommand3": "members",
 
         "playCommandInfo": "Indicate the content you want to play.",
-        "playCommandQueryInfo": "Indicate the link or name to the content you want to see."
+        "playCommandQueryInfo": "Indicate the link or name to the content you want to see.",
+
+        "pauseCommandInfo": "",
+
+        "continueCommandInfo": "",
+
+        "nextCommandInfo": "",
+        "nextCommand": "",
+
+        "stopCommandInfo": "",
+        "stopCommand": ""
     },
     "es":
     {
@@ -29,6 +39,18 @@
         "serverCommand3": "miembros",
 
         "playCommandInfo": "Indica el contenido que quieres reproducir.",
-        "playCommandQueryInfo": "Indica el enlace o nombre al contenido que quieres ver."
+        "playCommandQueryInfo": "Indica el enlace o nombre al contenido que quieres ver.",
+
+        "pauseCommandInfo": "Pausa lo que se está reproduciendo.",
+        "pauseCommand": "Se ha pausado la reproducción.",
+
+        "continueCommandInfo": "Continua lo que se está reproduciendo.",
+        "continueCommand": "Se vuelve a reproducir.",
+
+        "nextCommandInfo": "Continua lo que se está reproduciendo.",
+        "nextCommand": "Se vuelve a reproducir.",
+         
+        "stopCommandInfo": "Finaliza la reproducción actual.",
+        "stopCommand": "La reproducción ha finalizado."
     }
 }

@@ -1,9 +1,9 @@
 const { SlashCommandBuilder } = require('discord.js');
-const { AudioPlayerStatus } = require('@discordjs/voice');
 
 const messages = require('./../language/messages.js');
 const getURL = require('../music/getURL.js');
-const playerBot = require('../music/player.js');
+const { play } = require('../music/play.js');
+const getTitle = require('../music/getTitle.js');
 
 module.exports = 
 {
@@ -23,14 +23,13 @@ module.exports =
 
         const query = interaction.options.getString('query');
 
+        // Obtengo el array de videos a ver
         const videos = await getURL(query);
 
-        const { player, title } = await playerBot(interaction, voiceChannel, videos);
+        const title = await getTitle(query);
 
-        player.on(AudioPlayerStatus.Idle, async () =>
-        {
-            await playerBot(interaction, voiceChannel, videos);
-        });
+        // Ejecuto el player para que reproduzca todas las canciones que hayan buscado
+        await play(voiceChannel, videos);
 
         await interaction.reply(`Se va a reproducir: ${title}`);
 	},
