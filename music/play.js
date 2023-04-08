@@ -3,17 +3,9 @@ const playdl = require('play-dl');
 
 const player = require('./../music/player.js');
 
-let iG = 0;
-let voiceChannelG = null;
-let videosG = [];
-
 const play = async (voiceChannel, videos) =>
 {
-    iG = -1;
-    voiceChannelG = voiceChannel;
-    videosG = videos;
-
-    await playSong(iG, voiceChannel, videos);   
+    await playSong(-1, voiceChannel, videos);   
 }
 
 const playSong = async (i, voiceChannel, videos) =>
@@ -44,24 +36,10 @@ const playSong = async (i, voiceChannel, videos) =>
         adapterCreator: voiceChannel.guild.voiceAdapterCreator,
     }).subscribe(player);
 
-    player.on(AudioPlayerStatus.Idle, async () =>
+    player.once(AudioPlayerStatus.Idle, async () =>
     {
         await playSong(i, voiceChannel, videos);
     });
-
-    updateInfo(i, voiceChannel, videos);
 }
 
-const updateInfo = (i, voiceChannel, videos) =>
-{
-    iG = i;
-    voiceChannelG = voiceChannel;
-    videosG = videos;
-}
-
-const getInfo = () =>
-{
-    return { iG, voiceChannelG, videosG };
-}
-
-module.exports = { play, playSong, getInfo };
+module.exports = { play, playSong };

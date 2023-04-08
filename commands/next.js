@@ -1,8 +1,8 @@
 const { SlashCommandBuilder } = require('discord.js');
 
 const messages = require('./../language/messages.js');
-const { playSong, getInfo } = require('../music/play.js');
 const client = require('../server/client.js');
+const player = require('../music/player.js');
 
 module.exports = 
 {
@@ -11,9 +11,7 @@ module.exports =
 		.setDescription(messages.nextCommandInfo),
 	async execute(interaction) 
     {
-        const { iG, voiceChannelG, videosG } = getInfo();
-
-        await playSong(iG, voiceChannelG, videosG);   
+        player.stop();
 
         const mesg = 
         {
