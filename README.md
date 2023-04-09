@@ -24,7 +24,7 @@ Or, if you don't have Git, download it directly from the ***Code*** - ***Downloa
 
 For the bot to work you must:
 
-1. Rename the file ````config.json.example``` to ```config.json```.
+1. Rename the file ```config.json.example``` to ```config.json```.
 
 2. Fill in the fields it has inside:
 
