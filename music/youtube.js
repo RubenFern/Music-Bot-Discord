@@ -52,21 +52,23 @@ const youtube = async (query) =>
 
     if ( type == 'search' )
     {
-        const api_call = `https://www.googleapis.com/youtube/v3/search?part=id%2Csnippet,status&q=${encodeURIComponent(query)}&type=video&key=${API_KEY}`;
+        let videoURL = '';
+
+        const api_call = `https://www.googleapis.com/youtube/v3/search?part=id%2Csnippet&q=${encodeURIComponent(query)}&type=video&key=${API_KEY}`;
 
         await fetch(api_call)
             .then(res => res.json())
             .then(data => 
             {
                 const videoId = data.items[0].id.videoId;
-                const videoURL = `https://www.youtube.com/watch?v=${videoId}`;
-                const videoTitle = data.items[0].snippet.title;
-                const privacy = data.items[0].status.privacyStatus;
+                videoURL = `https://www.youtube.com/watch?v=${videoId}`;
 
-                if ( privacy == 'public' )
-                    videos.push({ URL: videoURL, Title: videoTitle });
+                /*if ( privacy == 'public' )
+                    videos.push({ URL: videoURL, Title: videoTitle });*/
             })
             .catch(err => console.error(err));
+
+        return youtube(videoURL);
     }
 console.log(videos)
     return videos;
