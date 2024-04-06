@@ -1,9 +1,8 @@
 const playdl = require('play-dl');
 
-const { API_KEY } = require('../config.json');
-
 const youtube = async (query) =>
 {
+    const API_KEY = process.env.API_KEY;
     let videos = [];
     const type = playdl.yt_validate(query);
 

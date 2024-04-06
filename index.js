@@ -1,7 +1,7 @@
+require('dotenv').config();
 const fs = require('node:fs');
 const path = require('node:path');
 
-const { token } = require('./config.json');
 const loadEvents = require('./server/loadEvents.js');
 const deployCommands = require('./server/deployCommands.js');
 const loadCommands = require('./server/loadCommands.js');
@@ -17,4 +17,4 @@ loadCommands(client, fs, path);
 loadEvents(client, fs, path);
 
 // Log in to Discord with your client's token
-client.login(token);
+client.login(process.env.TOKEN);
