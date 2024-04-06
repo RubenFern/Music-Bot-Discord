@@ -1,6 +1,6 @@
 const { SlashCommandBuilder } = require('discord.js');
 
-const messages = require('./../language/messages.js');
+const messages = require('../language/messages.js');
 
 module.exports = 
 {
