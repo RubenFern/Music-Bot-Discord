@@ -32,4 +32,4 @@ jobs:
         context: .
         file: ./Dockerfile
         push: true
-        tags: ghcr.io/${{ github.repository }}/soundwave-discord-bot:latest
+        tags: ghcr.io/${{ github.repository | lower }}/soundwave-discord-bot:latest
